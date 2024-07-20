@@ -1,9 +1,9 @@
-#ifndef BINARY_SEARCH_TREE
-#define BINARY_SEARCH_TREE
+#ifndef AVL_TREE_H
+#define AVL_TREE_H
 #include <iostream>
 
 template <typename T>
-class BST 
+class AVL 
 {
 private:
     struct Node {
@@ -13,7 +13,7 @@ private:
         Node(const T& data) : m_data(data), m_left(nullptr), m_right(nullptr) {}
     };
 public:
-    BST();
+    AVL();
     const T& findMin() const;
     T& findMin();
     const T& findMax() const;
@@ -53,6 +53,12 @@ private: //helper functions
     void postOrderHelper(const Node* node) const;
     void levelOrderHelper(const Node* node) const;
     void handleCurrentLevel(const Node* node, int level) const;
+    Node* ll_case(Node* node);
+    Node* rr_case(Node* node);
+    Node* lr_case(Node* node);
+    Node* rl_case(Node* node);
+
+    int getBalancingFactor(Node* node) const;
 
     std::size_t getHeightHelper(const Node* node) const;
 
@@ -65,6 +71,6 @@ private:
 
 };
 
-#include "binary-search-tree.tpp"
+#include "avl_tree.tpp"
 
-#endif //BINARY_SEARCH_TREE
+#endif //AVL_TREE_H
